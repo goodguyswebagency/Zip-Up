@@ -1,0 +1,11 @@
+/* Footer dropdown code */
+.footer_links-wrapper.is-open .footer_link-arrow {
+   transform: rotateZ(180deg);
+}
+.footer_links-wrapper.is-open .footer_link-spacer {
+   height: 1.5rem;
+}
+.footer_links-wrapper.is-open .footer_link-open {
+   max-height: 15rem;
+   opacity: 1;
+}
