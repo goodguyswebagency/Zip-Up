@@ -1,0 +1,260 @@
+/* Button hover styling */
+.button:hover .button-hover {
+   width: 100%;
+}
+.button[data-wf--button-primary--variant="outline-black"]:hover .button-hover,
+.button[data-wf--button-primary--variant="outline-white"]:hover .button-hover,
+.button[data-wf--button-primary--variant="navigation-white"]:hover
+   .button-hover,
+.button[data-wf--button-primary--variant="navigation-black"]:hover
+   .button-hover,
+.button[data-wf--button-primary--variant="navigation"]:hover .button-hover,
+.button[data-wf--button-large--variant="outline-black"]:hover .button-hover,
+.button[data-wf--button-large--variant="outline-white"]:hover .button-hover,
+.button[data-wf--button-arrow--variant="outline-black"]:hover .button-hover,
+.button[data-wf--button-arrow--variant="outline-white"]:hover .button-hover,
+.button[data-wf--button-arrow-large--variant="outline-black"]:hover
+   .button-hover,
+.button[data-wf--button-arrow-large--variant="outline-white"]:hover
+   .button-hover,
+.button[data-wf--button-secondary--variant="outline-black"]:hover .button-hover,
+.button[data-wf--button-secondary--variant="outline-white"]:hover .button-hover,
+.button[data-wf--button-secondary-large--variant="outline-black"]:hover
+   .button-hover,
+.button[data-wf--button-secondary-large--variant="outline-white"]:hover
+   .button-hover {
+   width: calc(100% + 2px);
+}
+.button[data-wf--button-primary--variant="outline-black"]:hover,
+.button[data-wf--button-primary--variant="outline-white"]:hover,
+.button[data-wf--button-primary--variant="navigation-white"]:hover,
+.button[data-wf--button-primary--variant="navigation-black"]:hover,
+.button[data-wf--button-primary--variant="navigation"]:hover,
+.button[data-wf--button-large--variant="outline-black"]:hover,
+.button[data-wf--button-large--variant="outline-white"]:hover,
+.button[data-wf--button-arrow--variant="outline-black"]:hover,
+.button[data-wf--button-arrow--variant="outline-white"]:hover,
+.button[data-wf--button-arrow-large--variant="outline-black"]:hover,
+.button[data-wf--button-arrow-large--variant="outline-white"]:hover,
+.button[data-wf--button-secondary--variant="outline-black"]:hover,
+.button[data-wf--button-secondary--variant="outline-white"]:hover,
+.button[data-wf--button-secondary-large--variant="outline-black"]:hover,
+.button[data-wf--button-secondary-large--variant="outline-white"]:hover {
+   color: var(--swatch--grayscale-100);
+}
+
+/* Navigation card hover */
+.navigation_dropdown_card_wrapper:hover .button-hover {
+   width: calc(100% + 2px);
+}
+.navigation_dropdown_card_wrapper:hover .button {
+   color: var(--swatch--grayscale-100);
+}
+
+/* Client segmentation card hover */
+.segmentation-service_card_wrapper:hover .button-hover {
+   width: calc(100% + 2px);
+}
+.segmentation-service_card_wrapper:hover .button {
+   color: var(--swatch--grayscale-100);
+}
+
+/* Element hover animate nested button */
+[data-animate-button]:hover .button-hover {
+   width: calc(100% + 2px);
+}
+[data-animate-button]:hover .button {
+   color: var(--swatch--grayscale-100);
+}
+
+/* Footer button hover styling */
+.footer_submit-wrapper:hover .button-hover {
+   width: 100%;
+}
+
+/* Swiper button styling reset */
+.swiper-button-prev,
+.swiper-button-next {
+   position: relative !important;
+   left: auto !important;
+   top: auto !important;
+   right: auto !important;
+   bottom: auto !important;
+   margin-top: 0 !important;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+   content: "";
+}
+
+/* Cart styling */
+/* Chrome, Safari, Edge, Opera */
+.quantity-changer.is-cart::-webkit-outer-spin-button,
+.quantity-changer.is-cart::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+/* Firefox */
+.quantity-changer.is-cart[type="number"] {
+   -moz-appearance: textfield;
+}
+
+/* Navigation link underline */
+.navigation_link {
+   position: relative;
+}
+
+.navigation_link::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 0;
+   height: 1px;
+   background: currentColor;
+   transition: width 0.3s ease;
+}
+
+.navigation_link:hover::after {
+   width: 100%;
+}
+
+/* Button link hover */
+.button.is-link .button-underline {
+   transform: translateX(0);
+}
+
+.button.is-link .button-underline.animate {
+   animation: underline-slide 0.39s linear forwards;
+}
+
+.product-container_contact_cta .product-container_contact_cta-line {
+   transform: translateX(0);
+}
+
+.product-container_contact_cta .product-container_contact_cta-line.animate {
+   animation: underline-slide 0.39s linear forwards;
+}
+
+@keyframes underline-slide {
+   0% {
+      transform: translateX(0%);
+   }
+   50% {
+      transform: translateX(100%);
+   }
+   50.001% {
+      transform: translateX(-100%);
+   }
+   100% {
+      transform: translateX(0%);
+   }
+}
+
+/* Footer link hover */
+a.footer_link {
+   position: relative;
+}
+
+a.footer_link::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 0;
+   height: 1px;
+   background: currentColor;
+   transition: width 0.3s ease;
+}
+
+a.footer_link:hover::after {
+   width: 100%;
+}
+
+/* Navigation dropdown code */
+
+@media screen and (min-width: 992px) {
+   .navigation_dropdown_link:hover .navigation_dropdown_link-arrow {
+      opacity: 1;
+   }
+   .navigation.is-open .navigation_brand-logo {
+      color: #1d1d1d;
+   }
+   .navigation.is-open .navigation_wrapper {
+      color: #1d1d1d;
+   }
+   .navigation.is-open a.button {
+      color: #1d1d1d;
+      border-color: #1d1d1d;
+   }
+}
+
+/* Footer dropdown code */
+.footer_links-wrapper.is-open .footer_link-arrow {
+   transform: rotateZ(180deg);
+}
+.footer_links-wrapper.is-open .footer_link-spacer {
+   height: 1.5rem;
+}
+.footer_links-wrapper.is-open .footer_link-open {
+   max-height: 15rem;
+   opacity: 1;
+}
+
+/* Navigation mobile code */
+body.is-fixed {
+   overflow: hidden;
+}
+@media screen and (max-width: 991px) {
+   #navigation.is-open .navigation_brand-logo {
+      color: var(--swatch--grayscale-900);
+   }
+   .navigation_mobile-link > div {
+      margin-top: 1px;
+   }
+}
+
+/* Heading break words with hyphen */
+@media screen and (max-width: 767px) {
+   h1,
+   h2,
+   h3 {
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+   }
+}
+
+/* Prefooter card hover */
+.prefooter_card_wrapper:hover .prefooter_card_arrow {
+   transform: translateX(0%);
+   opacity: 1;
+}
+
+/* Certificate hover animation */
+.certifications_certificate_wrapper:hover .certifications_certificate_button {
+   color: var(--swatch--grayscale-100);
+   background-color: var(--swatch--grayscale-900);
+}
+
+/* Attribute hover underline */
+[data-hover-underline] {
+   position: relative;
+}
+
+[data-hover-underline]::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 0;
+   height: 1px;
+   background: currentColor;
+   transition: width 0.3s ease;
+}
+
+[data-hover-underline]:hover::after {
+   width: 100%;
+}
