@@ -34,15 +34,11 @@
 @import url("./componentsCSS/footer.css");
 
 /* Heading break words with hyphen */
-@media screen and (max-width: 767px) {
-   h1,
-   h2,
-   h3 {
-      -webkit-hyphens: auto;
-      -moz-hyphens: auto;
-      -ms-hyphens: auto;
-      hyphens: auto;
-   }
+.text-hyphen {
+   -webkit-hyphens: auto;
+   -moz-hyphens: auto;
+   -ms-hyphens: auto;
+   hyphens: auto;
 }
 
 /* Prefooter card hover */
