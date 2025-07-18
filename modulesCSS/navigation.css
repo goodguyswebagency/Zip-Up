@@ -15,6 +15,12 @@
    }
 }
 
+@media screen and (max-width: 991px) {
+   .navigation.is-open .navigation_brand-logo {
+      color: var(--swatch--grayscale-900);
+   }
+}
+
 /* Navigation mobile code */
 body.is-fixed {
    overflow: hidden;
