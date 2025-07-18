@@ -157,3 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Navigation mobile code */
 /**************************/
 import "./modulesJavaScript/navigation/navigationMobile.js";
+
+/*******************************/
+/* Navigation about hover code */
+/*******************************/
+import "./modulesJavaScript/navigation/navigationAboutHover.js";
