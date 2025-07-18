@@ -1,0 +1,21 @@
+.contact-team_filter-form_radio-wrapper.fs-cmsfilter_active
+   .contact-team_filter-form_radio-label {
+   color: var(--swatch--grayscale-100);
+   background-color: var(--swatch--grayscale-700);
+   border-color: var(--swatch--grayscale-700);
+}
+
+/* Link hover animation */
+.contact_info-link::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 0;
+   height: 1px;
+   background: currentColor;
+   transition: width 0.3s ease;
+}
+.contact_info-link:hover::after {
+   width: 100%;
+}

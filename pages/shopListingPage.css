@@ -1,0 +1,19 @@
+/* Pagination styling */
+.pagination_button.w--current {
+   border-color: var(--swatch--grayscale-900);
+}
+
+/* Image hover */
+.shop-listing_item_image-wrapper:hover .shop-listing_item_image {
+   transform: scale(1.05);
+}
+
+/* Sidebar styling */
+.shop-listing_sidebar_filter_wrapper.is-open .shop-listing_sidebar_filter_open {
+   max-height: 19rem;
+}
+
+.shop-listing_sidebar_filter_wrapper.is-open
+   .shop-listing_sidebar_filters_icon-line.is-rotated {
+   transform: rotateZ(0deg);
+}

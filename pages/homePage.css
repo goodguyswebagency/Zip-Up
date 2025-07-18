@@ -1,0 +1,31 @@
+.heading-images_heading .word {
+   display: inline-block;
+   white-space: nowrap;
+}
+.heading-images_heading .letter {
+   display: inline-block;
+   color: rgba(48, 48, 48, 0.2);
+}
+
+/* Lift slider code */
+.swiper-button-next:after {
+   content: "";
+}
+.swiper-button-next.is-lift-slider {
+   position: absolute !important;
+   top: 0 !important;
+   left: 0 !important;
+}
+.lift-slider_slider:has(.swiper.is-lift-thumbs:hover) .swiper.is-lift-gallery {
+   pointer-events: none;
+}
+.swiper.is-lift-gallery:hover .swiper-button-next.is-lift-slider {
+   opacity: 1;
+   pointer-events: auto;
+}
+.swiper-button-next.is-lift-slider {
+   transform: translate(-50%, -50%);
+}
+.swiper-slide.is-lift-thumbs.swiper-slide-thumb-active {
+   border-color: #ee3b33;
+}
