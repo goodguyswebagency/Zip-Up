@@ -1,5 +1,5 @@
 /* Hover code */
-@import url("./componentsCSS/buttonHover.css");
+@import url("./modulesCSS/buttonHover.css");
 
 /* Swiper button styling reset */
 .swiper-button-prev,
@@ -29,9 +29,9 @@
    -moz-appearance: textfield;
 }
 
-@import url("./componentsCSS/navigation.css");
+@import url("./modulesCSS/navigation.css");
 
-@import url("./componentsCSS/footer.css");
+@import url("./modulesCSS/footer.css");
 
 /* Heading break words with hyphen */
 .text-hyphen {

@@ -72,12 +72,12 @@ if (window.innerWidth > 767) {
 /***********************/
 /*** Navigation code ***/
 /***********************/
-import "./componentsJavaScript/navigation/navigation.js";
+import "./modulesJavaScript/navigation/navigation.js";
 
 /*******************************/
 /* Swiper initializations code */
 /*******************************/
-import "./componentsJavaScript/swiperCode.js";
+import "./modulesJavaScript/swiperCode.js";
 
 /****************/
 /* GSAP fade up */
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /****************************/
 /* Navigation dropdown code */
 /****************************/
-import "./componentsJavaScript/navigation/navigationDropdown.js";
+import "./modulesJavaScript/navigation/navigationDropdown.js";
 
 /************************/
 /* Footer dropdown code */
@@ -156,4 +156,4 @@ document.addEventListener("DOMContentLoaded", () => {
 /**************************/
 /* Navigation mobile code */
 /**************************/
-import "./componentsJavaScript/navigation/navigationMobile.js";
+import "./modulesJavaScript/navigation/navigationMobile.js";
