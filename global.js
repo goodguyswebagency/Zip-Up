@@ -1,3 +1,5 @@
+// Cache purge test
+
 /**************/
 /* Lenis code */
 /**************/
