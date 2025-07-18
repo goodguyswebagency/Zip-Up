@@ -1,6 +1,11 @@
 /* Hover code */
 @import url("./modulesCSS/buttonHover.css");
 
+/* Import CSS modules */
+@import url("./modulesCSS/navigation.css");
+
+@import url("./modulesCSS/footer.css");
+
 /* Swiper button styling reset */
 .swiper-button-prev,
 .swiper-button-next {
@@ -28,10 +33,6 @@
 .quantity-changer.is-cart[type="number"] {
    -moz-appearance: textfield;
 }
-
-@import url("./modulesCSS/navigation.css");
-
-@import url("./modulesCSS/footer.css");
 
 /* Heading break words with hyphen */
 .text-hyphen {
