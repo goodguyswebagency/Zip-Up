@@ -1,4 +1,42 @@
 /* Bullet points styling */
+.product-container_description-info_rich-text ul > li::before {
+   content: "";
+   position: absolute;
+   left: 0rem;
+   top: 0.5em;
+   transform: translateY(-50%);
+   width: 8px;
+   height: 8px;
+   background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='7'%20height='8'%20viewBox='0%200%207%208'%20fill='none'%3E%3Cpath%20d='M7%204L9.53674e-07%208L0%204L9.53674e-07%20-3.0598e-07L7%204Z'%20fill='%23BF0A30'/%3E%3C/svg%3E")
+      no-repeat center center;
+}
+
+.product-container_description-info_rich-text ul ul li::before {
+   display: none;
+}
+
+.product-container_description-info_rich-text ul > li > ul {
+   padding-top: 0.25rem;
+   padding-right: 0;
+   padding-bottom: 0;
+   padding-left: 0;
+   margin-bottom: 0;
+}
+
+.product-container_description-info_rich-text ul > li > ul > li {
+   padding: 0;
+   color: var(--swatch--grayscale-600);
+}
+
+.product-container_description-info_rich-text ul {
+   padding-left: 0rem;
+}
+
+.product-container_description-info_rich-text li {
+   line-height: 1;
+   padding-left: 1.375rem;
+}
+
 .career_rich-text ul > li::before {
    content: "";
    position: absolute;
