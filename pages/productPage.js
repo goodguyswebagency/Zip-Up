@@ -206,3 +206,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
       document.body.classList.remove("is-fixed");
    });
 });
+
+/***********************/
+/* Table heading class */
+/***********************/
+
+document.addEventListener("DOMContentLoaded", function () {
+   setTimeout(() => {
+      console.log("Heading class function");
+      document.querySelectorAll("h3").forEach((heading) => {
+         const next = heading.nextElementSibling;
+         if (next && next.tagName === "H3") {
+            heading.classList.add("full-span");
+         }
+      });
+   }, 300);
+});

@@ -1,3 +1,26 @@
+/* Table styling */
+.product-container_description_list::before {
+   display: none;
+}
+.product-container_description_list::after {
+   display: none;
+}
+.product-container_description_list {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+.product-container_description_list h3 {
+   width: 100% !important;
+   grid-column: span 1;
+}
+.product-container_description_list h3.full-span {
+   grid-column: span 2;
+}
+.product-container_description_list p {
+   width: 100% !important;
+   grid-column: span 1;
+}
+
 /* Bullet points styling */
 .product-container_description-info_rich-text ul > li::before {
    content: "";
