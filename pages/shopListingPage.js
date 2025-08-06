@@ -98,3 +98,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    }, 150);
 });
+
+/******************************/
+/* Insert card into list grid */
+/******************************/
+
+document.addEventListener("DOMContentLoaded", () => {
+   const list = document.querySelector(".shop-listing_list");
+   const card = document.querySelector(".shop-listing_card_wrapper");
+   if (!list || !card) return;
+
+   list.prepend(card);
+
+   card.style.gridColumn = "1 / span 2";
+   card.style.gridRow = "1 / span 2";
+});

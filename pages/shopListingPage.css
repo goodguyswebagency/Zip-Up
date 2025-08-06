@@ -9,8 +9,9 @@
 }
 
 /* Sidebar styling */
-.shop-listing_sidebar_filter_wrapper.is-open .shop-listing_sidebar_filter_open {
-   max-height: 19rem;
+.shop-listing_sidebar_filter_wrapper.is-open .shop-listing_sidebar_filter_height {
+   grid-template-rows: 1fr;
+   opacity: 1;
 }
 
 .shop-listing_sidebar_filter_wrapper.is-open
