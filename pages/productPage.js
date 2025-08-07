@@ -1,3 +1,32 @@
+/************************/
+/* Set breadcrumbs link */
+/************************/
+
+document.addEventListener("DOMContentLoaded", () => {
+   const breadcrumbsObject = {
+      "Bomliftar inomhus": "/shop-bomliftar-inomhus",
+      "Bomliftar utomhus": "/shop-bomliftar-utomhus",
+      "Personliftar": "/shop-personliftar",
+      "Larvburna liftar": "/shop-larvburna-liftar",
+      "Släpvagnslift": "/shop-slapvagnslift",
+      "Saxliftar inomhus": "/shop-saxliftar-inomhus",
+      "Saxliftar utomhus": "/shop-saxliftar-utomhus",
+      "Pelarliftar": "/shop-pelarliftar",
+      "Vikbom": "/shop-vikbom",
+      "Bilmonterade liftar": "/shop-bilmonterade-liftar",
+      "Zip-Up Span 300": "/shop-zip-up-span-300",
+      "Zip-Up Span 400": "/shop-zip-up-span-400",
+      "Snappy Hantverkarställning": "/shop-snappy-hantverkarstallning",
+      "Reservparts": "/shop-reservparts"
+   }
+
+   const breadcrumbsLink = document.querySelector(".product-container_breadcrumbs-button")
+   if (!breadcrumbsLink) return;
+   const breadcrumbsText = breadcrumbsLink.querySelector(".product-container_breadcrumbs-text").textContent;
+   const breadcrumbsURL = breadcrumbsObject[breadcrumbsText];
+   breadcrumbsLink.href = breadcrumbsURL;
+});
+
 /*****************************/
 /* Discount price calculator */
 /*****************************/
@@ -32,7 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 });
 
+/*************************/
 /* Set URL for PDF links */
+/*************************/
+
 document.addEventListener("DOMContentLoaded", function () {
    setTimeout(function () {
       for (var i = 1; i <= 3; i++) {

@@ -168,3 +168,8 @@
       transform: translateX(0%);
    }
 }
+
+.product-container_image {
+   background-position: center;
+   background-size: contain;
+}
