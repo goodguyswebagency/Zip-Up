@@ -1,3 +1,11 @@
+/****************************************/
+/* Refresh ScrollTrigger on list filter */
+/****************************************/
+import refreshListAnimations from "../functions/refreshScrollTrigger";
+
+const lists = document.querySelectorAll(".shop-listing_list");
+refreshListAnimations(lists);
+
 /****************************/
 /* Calculate every discount */
 /****************************/
