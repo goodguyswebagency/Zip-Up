@@ -2,6 +2,10 @@
 .button:hover .button-hover {
    width: 100%;
 }
+.button:hover:not(.is-link) .button-text,
+.button:hover:not(.is-link) .button-arrow {
+   color: white !important;
+}
 .button[data-wf--button-primary--variant="outline-black"]:hover .button-hover,
 .button[data-wf--button-primary--variant="outline-white"]:hover .button-hover,
 .button[data-wf--button-primary--variant="navigation-white"]:hover
