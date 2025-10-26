@@ -6,6 +6,9 @@
 .button:hover:not(.is-link) .button-arrow {
    color: white !important;
 }
+.button:hover:not(.is-link) .button-arrow {
+   transform: translateX(15%);
+}
 .button[data-wf--button-primary--variant="outline-black"]:hover .button-hover,
 .button[data-wf--button-primary--variant="outline-white"]:hover .button-hover,
 .button[data-wf--button-primary--variant="navigation-white"]:hover
