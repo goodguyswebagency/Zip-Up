@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
       productSliders.forEach((slider) => {
          const swiperElement = slider.querySelector(".swiper");
          new Swiper(swiperElement, {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 20,
             loop: false,
             grabCursor: true,
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   slidesPerView: 1,
                },
                992: {
-                  slidesPerView: 3,
+                  slidesPerView: 4,
                },
             },
             navigation: {
