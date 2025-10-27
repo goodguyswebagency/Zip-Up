@@ -221,23 +221,23 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Contact popup form open */
 /***************************/
 
-document.addEventListener("DOMContentLoaded", (event) => {
-   const popupOpenButton = document.querySelector(
-      ".product-container_contact_cta"
-   );
-   const contactPopupSection = document.querySelector(".section_contact-popup");
-   const popupCloseButton = document.querySelector(".contact-popup_close");
+// document.addEventListener("DOMContentLoaded", (event) => {
+//    const popupOpenButton = document.querySelector(
+//       ".product-container_contact_cta"
+//    );
+//    const contactPopupSection = document.querySelector(".section_contact-popup");
+//    const popupCloseButton = document.querySelector(".contact-popup_close");
 
-   popupOpenButton.addEventListener("click", () => {
-      contactPopupSection.classList.add("is-open");
-      document.body.classList.add("is-fixed");
-   });
+//    popupOpenButton.addEventListener("click", () => {
+//       contactPopupSection.classList.add("is-open");
+//       document.body.classList.add("is-fixed");
+//    });
 
-   popupCloseButton.addEventListener("click", () => {
-      contactPopupSection.classList.remove("is-open");
-      document.body.classList.remove("is-fixed");
-   });
-});
+//    popupCloseButton.addEventListener("click", () => {
+//       contactPopupSection.classList.remove("is-open");
+//       document.body.classList.remove("is-fixed");
+//    });
+// });
 
 /***********************/
 /* Table heading class */
