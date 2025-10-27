@@ -173,3 +173,10 @@
    background-position: center;
    background-size: contain;
 }
+
+/* Insurance and maintenance tooltip */
+.product-container_insurance-maintenance_info-wrapper:hover
+   .product-container_description_bullet_description {
+   opacity: 1;
+   pointer-events: auto;
+}
