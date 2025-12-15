@@ -59,28 +59,39 @@ document.addEventListener("DOMContentLoaded", function () {
       });
    }
    const rentSliders = document.querySelectorAll(".rent-success_slider");
-   if (rentSliders) {
-      rentSliders.forEach(function (slider) {
-         const swiperElement = slider.querySelector(".swiper");
-         new Swiper(swiperElement, {
-            slidesPerView: 1.2,
-            spaceBetween: 16,
-            loop: false,
-            grabCursor: true,
-            draggable: true,
-            navigation: {
-               nextEl: slider.querySelector(".swiper-button-next"),
-               prevEl: slider.querySelector(".swiper-button-prev"),
-            },
-            breakpoints: {
-               992: {
-                  slidesPerView: 2.4,
-                  spaceBetween: 20,
-               },
-            },
-         });
-      });
+   
+   if (rentSliders.length) {
+     rentSliders.forEach((slider) => {
+       const swiperElement = slider.querySelector(".swiper");
+       if (!swiperElement) return;
+   
+       new Swiper(swiperElement, {
+         slidesPerView: 1.2,
+         spaceBetween: 16,
+   
+         slidesOffsetAfter: 16, // ✅ NOVO: dodaje prostor na kraju da zadnji slide bude 100% vidljiv
+   
+         loop: false,
+         grabCursor: true,
+         draggable: true,
+   
+         navigation: {
+           nextEl: slider.querySelector(".swiper-button-next"),
+           prevEl: slider.querySelector(".swiper-button-prev"),
+         },
+   
+         breakpoints: {
+           992: {
+             slidesPerView: 2.4,
+             spaceBetween: 20,
+   
+             slidesOffsetAfter: 20, // ✅ NOVO: isto rješenje i za desktop breakpoint
+           },
+         },
+       });
+     });
    }
+
    const historySliders = document.querySelectorAll(".history_slider");
    if (historySliders.length > 0) {
       historySliders.forEach(function (slider) {
