@@ -58,8 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
          }
       });
    }
-   const rentSliders = document.querySelectorAll(".rent-success_slider");
    
+   const rentSliders = document.querySelectorAll(".rent-success_slider");
+
    if (rentSliders.length) {
      rentSliders.forEach((slider) => {
        const swiperElement = slider.querySelector(".swiper");
@@ -69,9 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
          slidesPerView: 1.2,
          spaceBetween: 16,
    
-         slidesOffsetAfter: 16, // ✅ NOVO: dodaje prostor na kraju da zadnji slide bude 100% vidljiv
+         loop: true,
+         loopAdditionalSlides: 3, // 🔑
+         loopFillGroupWithBlank: false,
    
-         loop: false,
          grabCursor: true,
          draggable: true,
    
@@ -84,13 +86,12 @@ document.addEventListener("DOMContentLoaded", function () {
            992: {
              slidesPerView: 2.4,
              spaceBetween: 20,
-   
-             slidesOffsetAfter: 20, // ✅ NOVO: isto rješenje i za desktop breakpoint
            },
          },
        });
      });
    }
+
 
    const historySliders = document.querySelectorAll(".history_slider");
    if (historySliders.length > 0) {
