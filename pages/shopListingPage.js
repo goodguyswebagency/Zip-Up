@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /******************************/
 /* Insert card into list grid */
 /******************************/
-
+/*
 document.addEventListener("DOMContentLoaded", () => {
    const list = document.querySelector(".shop-listing_list");
    const card = document.querySelector(".shop-listing_card_wrapper");
@@ -137,3 +137,4 @@ document.addEventListener("DOMContentLoaded", () => {
    card.style.gridColumn = "1 / span 2";
    card.style.gridRow = "1 / span 2";
 });
+*/
