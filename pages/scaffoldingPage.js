@@ -2,22 +2,24 @@
 /* GSAP image parallax & width animations */
 /******************************************/
 
-document.addEventListener("DOMContentLoaded", (event) => {
-   gsap.registerPlugin(ScrollTrigger);
-
-   // Parallax on each element with gsap-image-parallax
    document.querySelectorAll("[gsap-image-parallax]").forEach((el) => {
-      gsap.to(el, {
-         yPercent: -12,
-         ease: "power1.out",
+     gsap.fromTo(
+       el,
+       {
+         yPercent: 12, // 
+       },
+       {
+         yPercent: 0, // 
+         ease: "none",
          scrollTrigger: {
-            trigger: el,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.75,
-            markers: false,
+           trigger: el,
+           start: "top bottom",
+           end: "bottom center",
+           scrub: 0.75,
+           markers: false,
          },
-      });
+       }
+     );
    });
 
    function getInitClipPath(el) {
