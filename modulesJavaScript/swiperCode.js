@@ -22,58 +22,89 @@ document.addEventListener("DOMContentLoaded", function () {
    const liftSliders = document.querySelectorAll(".lift-slider_slider");
    
    if (liftSliders.length > 0) {
-     liftSliders.forEach(function (slider) {
+     liftSliders.forEach((slider) => {
        const mainSwiperEl = slider.querySelector(".swiper.is-lift-gallery");
        const thumbsSwiperEl = slider.querySelector(".swiper.is-lift-thumbs");
    
-       if (mainSwiperEl && thumbsSwiperEl) {
-         const thumbsSwiper = new Swiper(thumbsSwiperEl, {
-           slidesPerView: "auto",
-           spaceBetween: 10,
-           watchSlidesProgress: true,
-         });
+       if (!mainSwiperEl || !thumbsSwiperEl) return;
    
-         const mainSwiper = new Swiper(mainSwiperEl, {
-           slidesPerView: 1,
-           spaceBetween: 0,
-           effect: "fade",
-           navigation: {
-             nextEl: slider.querySelector(".swiper-button-next"),
-           },
-           fadeEffect: { crossFade: true },
-           autoplay: {
-             delay: 5000,
-             disableOnInteraction: false,
-           },
-           thumbs: { swiper: thumbsSwiper },
-           allowTouchMove: false,
-           loop: true,
-         });
+       const thumbsSwiper = new Swiper(thumbsSwiperEl, {
+         slidesPerView: "auto",
+         spaceBetween: 10,
+         watchSlidesProgress: true,
+         slideToClickedSlide: true,
+       });
    
-         const progressCircle = slider.querySelector(
-           ".lift-slider_button svg circle"
-         );
-         const circumference = 2 * Math.PI * 27;
+       const mainSwiper = new Swiper(mainSwiperEl, {
+         slidesPerView: 1,
+         spaceBetween: 0,
+         effect: "fade",
+         fadeEffect: { crossFade: true },
+         navigation: {
+           nextEl: slider.querySelector(".swiper-button-next"),
+         },
+         autoplay: {
+           delay: 5000,
+           disableOnInteraction: false,
+         },
+         thumbs: { swiper: thumbsSwiper },
+         watchSlidesProgress: true,
+         allowTouchMove: false,
+         loop: true,
+       });
    
-         mainSwiper.on("autoplayTimeLeft", function (_swiper, _time, progress) {
-           progressCircle.style.strokeDashoffset =
-             circumference * progress;
-         });
+       const progressCircle = slider.querySelector(
+         ".lift-slider_button svg circle"
+       );
+       const circumference = 2 * Math.PI * 27;
    
-         mainSwiper.autoplay.stop();
+       mainSwiper.on("autoplayTimeLeft", (_swiper, _time, progress) => {
+         if (!progressCircle) return;
+         progressCircle.style.strokeDashoffset =
+           circumference * progress;
+       });
    
-         ScrollTrigger.create({
-           trigger: slider,
-           start: "top 75%",
-           once: true,
-           onEnter: () => {
-             mainSwiper.autoplay.start();
-           },
+       mainSwiper.autoplay.stop();
+   
+       ScrollTrigger.create({
+         trigger: slider,
+         start: "top 75%",
+         once: true,
+         onEnter: () => {
+           mainSwiper.autoplay.start();
+           startThumbProgress(mainSwiper.realIndex);
+         },
+       });
+   
+       function resetThumbProgress() {
+         thumbsSwiper.slides.forEach((slide) => {
+           const line = slide.querySelector(".thumb-progress");
+           if (!line) return;
+           line.style.transition = "none";
+           line.style.transform = "scaleX(0)";
          });
        }
+   
+       function startThumbProgress(index) {
+         resetThumbProgress();
+   
+         const activeThumb = thumbsSwiper.slides[index];
+         if (!activeThumb) return;
+   
+         const line = activeThumb.querySelector(".thumb-progress");
+         if (!line) return;
+   
+         requestAnimationFrame(() => {
+           line.style.transition = "transform 5s linear";
+           line.style.transform = "scaleX(1)";
+         });
+       }
+   
+       mainSwiper.on("slideChangeTransitionStart", () => {
+         startThumbProgress(mainSwiper.realIndex);
+       });
      });
    }
-
 
    
    const rentSliders = document.querySelectorAll(".rent-success_slider");
