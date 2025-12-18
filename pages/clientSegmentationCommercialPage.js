@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
    gsap.registerPlugin(ScrollTrigger);
 
    // Parallax on each element with gsap-image-parallax
+   /*
    document.querySelectorAll("[gsap-image-parallax]").forEach((el) => {
       gsap.to(el, {
          yPercent: 0,
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
          },
       });
    });
+   */
 
    function getInitClipPath(el) {
       let initialClipPath;
