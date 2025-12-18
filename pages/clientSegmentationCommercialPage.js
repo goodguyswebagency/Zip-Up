@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
    // Parallax on each element with gsap-image-parallax
    document.querySelectorAll("[gsap-image-parallax]").forEach((el) => {
       gsap.to(el, {
-         yPercent: -12,
+         yPercent: 0,
          ease: "power1.out",
          scrollTrigger: {
             trigger: el,
