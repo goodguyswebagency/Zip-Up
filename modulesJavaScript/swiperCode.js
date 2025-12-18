@@ -19,32 +19,61 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 
    
-   const mainSwiper = new Swiper(mainSwiperEl, {
-     slidesPerView: 1,
-     spaceBetween: 0,
-     effect: "fade",
-     navigation: {
-       nextEl: slider.querySelector(".swiper-button-next"),
-     },
-     fadeEffect: { crossFade: true },
-     autoplay: { delay: 5000, disableOnInteraction: false },
-     thumbs: { swiper: thumbsSwiper },
-     allowTouchMove: false,
-     loop: true,
-   });
+   const liftSliders = document.querySelectorAll(".lift-slider_slider");
    
-   // ⛔ stop autoplay na load
-   mainSwiper.autoplay.stop();
+   if (liftSliders.length > 0) {
+     liftSliders.forEach(function (slider) {
+       const mainSwiperEl = slider.querySelector(".swiper.is-lift-gallery");
+       const thumbsSwiperEl = slider.querySelector(".swiper.is-lift-thumbs");
    
-   // ▶️ start autoplay kad slider prvi put uđe u viewport
-   ScrollTrigger.create({
-     trigger: slider,
-     start: "top 75%",
-     once: true,
-     onEnter: () => {
-       mainSwiper.autoplay.start();
-     },
-   });
+       if (mainSwiperEl && thumbsSwiperEl) {
+         const thumbsSwiper = new Swiper(thumbsSwiperEl, {
+           slidesPerView: "auto",
+           spaceBetween: 10,
+           watchSlidesProgress: true,
+         });
+   
+         const mainSwiper = new Swiper(mainSwiperEl, {
+           slidesPerView: 1,
+           spaceBetween: 0,
+           effect: "fade",
+           navigation: {
+             nextEl: slider.querySelector(".swiper-button-next"),
+           },
+           fadeEffect: { crossFade: true },
+           autoplay: {
+             delay: 5000,
+             disableOnInteraction: false,
+           },
+           thumbs: { swiper: thumbsSwiper },
+           allowTouchMove: false,
+           loop: true,
+         });
+   
+         const progressCircle = slider.querySelector(
+           ".lift-slider_button svg circle"
+         );
+         const circumference = 2 * Math.PI * 27;
+   
+         mainSwiper.on("autoplayTimeLeft", function (_swiper, _time, progress) {
+           progressCircle.style.strokeDashoffset =
+             circumference * progress;
+         });
+   
+         mainSwiper.autoplay.stop();
+   
+         ScrollTrigger.create({
+           trigger: slider,
+           start: "top 75%",
+           once: true,
+           onEnter: () => {
+             mainSwiper.autoplay.start();
+           },
+         });
+       }
+     });
+   }
+
 
    
    const rentSliders = document.querySelectorAll(".rent-success_slider");
