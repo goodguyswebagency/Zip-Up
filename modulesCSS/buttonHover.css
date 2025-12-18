@@ -72,7 +72,7 @@
    width: calc(100% + 2px);
 }
 [data-animate-button]:hover .button {
-   color: var(--swatch--grayscale-100);
+   color: var(--swatch--grayscale-100) !important;
 }
 
 /* Footer button hover styling */
