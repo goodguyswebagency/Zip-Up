@@ -1,6 +1,6 @@
 /* Button hover styling */
 .button:hover .button-hover {
-   width: 101%;
+   width: 100%;
 }
 .button:hover:not(.is-link) .button-text,
 .button:hover:not(.is-link) .button-arrow {
