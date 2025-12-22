@@ -2,6 +2,9 @@
 .button:hover .button-hover {
    width: 100%;
 }
+.button.navigation-white:hover .button-hover {
+  width: calc(100% + 2px);
+}
 .button:hover:not(.is-link) .button-text,
 .button:hover:not(.is-link) .button-arrow {
    color: white !important;
