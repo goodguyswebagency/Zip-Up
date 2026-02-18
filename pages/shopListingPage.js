@@ -173,9 +173,23 @@ window.fsAttributes.push([
 /* Filter sidebar actions    */
 /*****************************/
 
+// View — zatvori sidebar
 document.addEventListener('click', (e) => {
    if (e.target.closest('[data-filter="view"]')) {
       filterSidebar.classList.remove('is-open');
+   }
+});
+
+// Clear — koristi Finsweet API
+document.addEventListener('click', (e) => {
+   if (e.target.closest('[data-filter="clear"]')) {
+      window.fsAttributes = window.fsAttributes || [];
+      window.fsAttributes.push([
+         'cmsfilter',
+         (filterInstances) => {
+            filterInstances.forEach((instance) => instance.resetFilters());
+         },
+      ]);
    }
 });
 
@@ -199,6 +213,5 @@ if (appliedHeading && activeWrapper) {
       childList: true,
    });
 }
-
 
 
