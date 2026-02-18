@@ -18,3 +18,27 @@
    .shop-listing_sidebar_filters_icon-line.is-rotated {
    transform: rotateZ(0deg);
 }
+
+.shop-listing_sidebar {
+   display: flex;
+   flex-direction: column;
+   overflow: hidden; 
+}
+
+.shop-listing_form-block {
+   flex: 1;
+   overflow-y: auto;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+}
+
+.shop-listing_form-block::-webkit-scrollbar {
+   display: none;
+}
+
+.shop-listing-button_wrapper {
+   position: relative; 
+   flex-shrink: 0;
+   inset: unset;
+   max-width: 100%;
+}
