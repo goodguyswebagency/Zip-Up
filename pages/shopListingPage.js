@@ -122,6 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
          pagination.classList.remove("is-hidden"); // ← ovo nedostaje
       }
-   }, 150);
+   }, 300);
 });
+
+
+/************************/
+/* Sidebar scroll lock  */
+/************************/
+
+const filterSidebar = document.querySelector('.shop-listing_sidebar');
+
+filterSidebar.addEventListener('wheel', (e) => {
+   e.preventDefault();
+   e.stopPropagation();
+   
+   const formBlock = filterSidebar.querySelector('.shop-listing_form-block');
+   if (formBlock) {
+      formBlock.scrollTop += e.deltaY;
+   }
+}, { passive: false });
+
 
