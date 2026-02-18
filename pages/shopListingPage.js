@@ -129,9 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /************************/
 /* Sidebar scroll lock  */
 /************************/
-
-const filterSidebar = document.querySelector('.shop-listing_sidebar');
-
 filterSidebar.addEventListener('wheel', (e) => {
    e.preventDefault();
    e.stopPropagation();
