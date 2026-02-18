@@ -146,4 +146,23 @@ filterSidebar.addEventListener('wheel', (e) => {
    }
 }, { passive: false });
 
+/*****************************/
+/* Pagination scroll to top  */
+/*****************************/
+
+window.fsAttributes = window.fsAttributes || [];
+window.fsAttributes.push([
+   'cmsload',
+   (listInstances) => {
+      listInstances.forEach((list) => {
+         list.on('renderitems', () => {
+            const anchor = document.querySelector('[fs-cmsfilter-element="scroll-anchor"]');
+            if (anchor) {
+               anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+         });
+      });
+   },
+]);
+
 
