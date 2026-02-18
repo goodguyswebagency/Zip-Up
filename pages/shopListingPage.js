@@ -156,10 +156,14 @@ window.fsAttributes.push([
    (listInstances) => {
       listInstances.forEach((list) => {
          list.on('renderitems', () => {
-            const anchor = document.querySelector('[fs-cmsfilter-element="scroll-anchor"]');
-            if (anchor) {
-               anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            const anchor = document.querySelector('.shop-listing_heading');
+            if (!anchor) return;
+
+            // 1. Refresh ScrollTrigger PRIJE scrolla da ga neutralizujemo
+            ScrollTrigger.refresh();
+
+            // 2. Instant scroll — ne može biti prekinut
+            anchor.scrollIntoView({ behavior: 'instant', block: 'start' });
          });
       });
    },
