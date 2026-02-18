@@ -169,4 +169,36 @@ window.fsAttributes.push([
    },
 ]);
 
+/*****************************/
+/* Filter sidebar actions    */
+/*****************************/
+
+document.addEventListener('click', (e) => {
+   if (e.target.closest('[data-filter="view"]')) {
+      filterSidebar.classList.remove('is-open');
+   }
+});
+
+// Applied filters heading
+const appliedHeading = document.querySelector(
+   '.shop-listing_sidebar_heading-wrapper .shop-listing_sidebar_heading'
+);
+const activeWrapper = document.querySelector(
+   '.shop-listing_sidebar_filter-active-wrapper'
+);
+
+if (appliedHeading && activeWrapper) {
+   const updateAppliedHeading = () => {
+      appliedHeading.textContent =
+         activeWrapper.children.length > 0 ? 'Applied filters' : 'No filter selected';
+   };
+
+   updateAppliedHeading();
+
+   new MutationObserver(updateAppliedHeading).observe(activeWrapper, {
+      childList: true,
+   });
+}
+
+
 
