@@ -203,8 +203,9 @@ const activeWrapper = document.querySelector(
 
 if (appliedHeading && activeWrapper) {
    const updateAppliedHeading = () => {
-      appliedHeading.textContent =
-         activeWrapper.children.length > 0 ? 'Applied filters' : 'No filter selected';
+      const hasActive = activeWrapper.children.length > 0;
+      appliedHeading.textContent = hasActive ? 'Applied filters' : 'No filter selected';
+      activeWrapper.style.paddingBottom = hasActive ? '1rem' : '';
    };
 
    updateAppliedHeading();
