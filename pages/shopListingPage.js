@@ -115,26 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const wrapper = document.querySelector(".pagination_button-wrapper");
       const pagination = document.querySelector(".shop-listing_pagination");
 
-      if (wrapper && pagination && wrapper.children.length === 0) {
+      if (!wrapper || !pagination) return;
+
+      if (wrapper.children.length === 0) {
          pagination.classList.add("is-hidden");
+      } else {
+         pagination.classList.remove("is-hidden"); // ← ovo nedostaje
       }
    }, 150);
 });
 
-/******************************/
-/* Insert card into list grid */
-/******************************/
-/*
-document.addEventListener("DOMContentLoaded", () => {
-   const list = document.querySelector(".shop-listing_list");
-   const card = document.querySelector(".shop-listing_card_wrapper");
-   console.log("List: " + list);
-   console.log("Card: " + card);
-   if (!list || !card) return;
-
-   list.prepend(card);
-
-   card.style.gridColumn = "1 / span 2";
-   card.style.gridRow = "1 / span 2";
-});
-*/
