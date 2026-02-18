@@ -111,18 +111,25 @@ filterWrappers.forEach((filter) => {
 /*****************************************/
 
 document.addEventListener("DOMContentLoaded", () => {
-   setTimeout(() => {
-      const wrapper = document.querySelector(".pagination_button-wrapper");
-      const pagination = document.querySelector(".shop-listing_pagination");
+   const wrapper = document.querySelector(".pagination_button-wrapper");
+   const pagination = document.querySelector(".shop-listing_pagination");
 
-      if (!wrapper || !pagination) return;
+   if (!wrapper || !pagination) return;
 
+   const updatePagination = () => {
       if (wrapper.children.length === 0) {
          pagination.classList.add("is-hidden");
       } else {
-         pagination.classList.remove("is-hidden"); // ← ovo nedostaje
+         pagination.classList.remove("is-hidden");
       }
-   }, 300);
+   };
+
+   // Provjeri odmah
+   updatePagination();
+
+   // Posmatraj promjene u wrapperu
+   const observer = new MutationObserver(updatePagination);
+   observer.observe(wrapper, { childList: true });
 });
 
 
