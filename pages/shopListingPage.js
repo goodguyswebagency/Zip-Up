@@ -38,13 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
          ".shop-listing_item_price.is-discount"
       );
 
-      // Ako nema price elementa, preskoči
       if (!priceEl) return;
 
       const priceText = priceEl.innerText.trim();
       const price = parseFloat(priceText.replace(/[^0-9.]+/g, ""));
 
-      // Ako je cijena 0 ili prazna, prikaži "Kontakta för offert"
+      // Ako je cijena 0 ili prazna → Kontakta för offert
       if (!price || price === 0) {
          priceEl.innerText = "Kontakta för offert";
          priceEl.classList.add("no-price");
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
          return;
       }
 
-      // Sakrij discount ako nema compare price
+      // Nema compare price → sakrij discount, nema precrtane cijene
       if (
          !comparePriceEl ||
          comparePriceEl.classList.contains("w-dyn-bind-empty") ||
@@ -66,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
          comparePriceEl.innerText.replace(/[^0-9.]+/g, "")
       );
 
-      // Discount = koliko je is-compare manji od is-price
+      // is-price je originalna (viša, precrtana), is-compare je akcijska (niža)
       if (
          !isNaN(price) &&
          !isNaN(comparePrice) &&
