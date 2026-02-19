@@ -24,7 +24,7 @@ refreshListAnimations(lists);
 /* Calculate every discount */
 /****************************/
 
-document.addEventListener("DOMContentLoaded", function () {
+function calculateDiscounts() {
    const items = document.querySelectorAll(
       ".shop-listing_list .shop-listing_item"
    );
@@ -52,7 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
          discountEl.innerText = "";
       }
    });
-});
+}
+
+// Pokreni na učitavanju
+calculateDiscounts();
 
 /***********************/
 /* Filter sidebar open */
@@ -142,11 +145,11 @@ window.fsAttributes.push([
             const anchor = document.querySelector('.shop-listing_heading');
             if (!anchor) return;
 
-            // 1. Refresh ScrollTrigger PRIJE scrolla da ga neutralizujemo
             ScrollTrigger.refresh();
-
-            // 2. Instant scroll — ne može biti prekinut
             anchor.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+            // Preračunaj discount za nove iteme
+            calculateDiscounts();
          });
       });
    },
