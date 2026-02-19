@@ -25,51 +25,67 @@ refreshListAnimations(lists);
 /****************************/
 
 document.addEventListener("DOMContentLoaded", function () {
-   // Select all items within the shop listing container.
    const items = document.querySelectorAll(
       ".shop-listing_list .shop-listing_item"
    );
 
    items.forEach((item) => {
-      // Get the price element and extract its text.
       const priceEl = item.querySelector(".shop-listing_item_price.is-price");
-      const priceText = priceEl ? priceEl.innerText : "";
-      // Remove any non-digit (and non-decimal) characters to get a number.
-      const price = parseFloat(priceText.replace(/[^0-9.]+/g, ""));
-
-      // Select the compare price and discount elements if they exist.
       const comparePriceEl = item.querySelector(
-         ".shop-listing_item_price.is-compare-price"
+         ".shop-listing_item_price.is-compare"
       );
       const discountEl = item.querySelector(
          ".shop-listing_item_price.is-discount"
       );
 
-      // Continue only if the item has a compare price element and a discount element.
-      if (comparePriceEl && discountEl) {
-         const comparePriceText = comparePriceEl.innerText;
-         const comparePrice = parseFloat(
-            comparePriceText.replace(/[^0-9.]+/g, "")
+      // Ako nema price elementa, preskoči
+      if (!priceEl) return;
+
+      const priceText = priceEl.innerText.trim();
+      const price = parseFloat(priceText.replace(/[^0-9.]+/g, ""));
+
+      // Ako je cijena 0 ili prazna, prikaži "Kontakta för offert"
+      if (!price || price === 0) {
+         priceEl.innerText = "Kontakta för offert";
+         priceEl.classList.add("no-price");
+         if (discountEl) discountEl.innerText = "";
+         return;
+      }
+
+      // Sakrij discount ako nema compare price
+      if (
+         !comparePriceEl ||
+         comparePriceEl.classList.contains("w-dyn-bind-empty") ||
+         comparePriceEl.innerText.trim() === ""
+      ) {
+         if (discountEl) discountEl.innerText = "";
+         return;
+      }
+
+      const comparePrice = parseFloat(
+         comparePriceEl.innerText.replace(/[^0-9.]+/g, "")
+      );
+
+      // Discount = koliko je is-price jeftinija od is-compare
+      if (
+         !isNaN(price) &&
+         !isNaN(comparePrice) &&
+         comparePrice > 0 &&
+         comparePrice > price
+      ) {
+         const discountPercentage = Math.round(
+            ((comparePrice - price) / comparePrice) * 100
          );
-
-         // Check both prices have been parsed correctly and avoid division by zero.
-         if (!isNaN(price) && !isNaN(comparePrice) && comparePrice > 0) {
-            // Calculate the discount percentage, rounded to the nearest whole number.
-            const discountPercentage = Math.round(
-               ((comparePrice - price) / comparePrice) * 100
-            );
-
-            // If there is a discount, update the discount element text.
-            if (discountPercentage > 0) {
-               discountEl.innerText = discountPercentage + "% off";
-            } else {
-               // Optionally, if there isn't a discount, you could clear the text or hide the element.
-               discountEl.innerText = "";
-            }
+         if (discountEl) {
+            discountEl.innerText =
+               discountPercentage > 0 ? discountPercentage + "% off" : "";
          }
+      } else {
+         if (discountEl) discountEl.innerText = "";
       }
    });
 });
+
 
 /***********************/
 /* Filter sidebar open */
