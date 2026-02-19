@@ -142,7 +142,7 @@ window.fsAttributes.push([
    (listInstances) => {
       listInstances.forEach((list) => {
          list.on('renderitems', () => {
-            const anchor = document.querySelector('.shop-listing_heading');
+            const anchor = document.querySelector('[data-scroll-anchor]');
             if (!anchor) return;
 
             ScrollTrigger.refresh();
