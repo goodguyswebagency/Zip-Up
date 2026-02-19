@@ -47,17 +47,20 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!price || price === 0) {
          priceEl.innerText = "Kontakta för offert";
          priceEl.classList.add("no-price");
-         if (discountEl) discountEl.innerText = "";
+         if (discountEl) discountEl.style.display = "none";
+         if (comparePriceEl) comparePriceEl.style.display = "none";
          return;
       }
 
-      // Nema compare price → sakrij discount, nema precrtane cijene
+      // Nema compare price → sakrij i is-price i is-discount
       if (
          !comparePriceEl ||
          comparePriceEl.classList.contains("w-dyn-bind-empty") ||
          comparePriceEl.innerText.trim() === ""
       ) {
-         if (discountEl) discountEl.innerText = "";
+         priceEl.style.display = "none"; // sakrij precrtanu
+         comparePriceEl.style.display = "none"; // samo ako postoji
+         if (discountEl) discountEl.style.display = "none";
          return;
       }
 
@@ -65,26 +68,31 @@ document.addEventListener("DOMContentLoaded", function () {
          comparePriceEl.innerText.replace(/[^0-9.]+/g, "")
       );
 
-      // is-price je originalna (viša, precrtana), is-compare je akcijska (niža)
+      // Ima compare price → prikaži sve
       if (
          !isNaN(price) &&
          !isNaN(comparePrice) &&
          price > 0 &&
          price > comparePrice
       ) {
+         priceEl.style.display = "";        // prikaži precrtanu
+         comparePriceEl.style.display = ""; // prikaži akcijsku
+         
          const discountPercentage = Math.round(
             ((price - comparePrice) / price) * 100
          );
          if (discountEl) {
-            discountEl.innerText =
-               discountPercentage > 0 ? discountPercentage + "% off" : "";
+            discountEl.style.display = discountPercentage > 0 ? "" : "none";
+            discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% off" : "";
          }
       } else {
-         if (discountEl) discountEl.innerText = "";
+         // compare postoji ali nije manji od price → sakrij oboje
+         priceEl.style.display = "none";
+         comparePriceEl.style.display = "none";
+         if (discountEl) discountEl.style.display = "none";
       }
    });
 });
-
 
 /***********************/
 /* Filter sidebar open */
