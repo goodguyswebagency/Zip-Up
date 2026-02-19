@@ -30,7 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
    );
 
    items.forEach((item) => {
-      const priceEl = item.querySelector(".shop-listing_item_price.is-price");
+      const priceEl = item.querySelector(
+         ".shop-listing_item_price.is-price:not(.no-price)"
+      );
       const comparePriceEl = item.querySelector(
          ".shop-listing_item_price.is-compare"
       );
@@ -38,58 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
          ".shop-listing_item_price.is-discount"
       );
 
-      if (!priceEl) return;
+      if (!priceEl || !comparePriceEl || !discountEl) return;
 
-      const priceText = priceEl.innerText.trim();
-      const price = parseFloat(priceText.replace(/[^0-9.]+/g, ""));
+      const price = parseFloat(priceEl.innerText.replace(/[^0-9.]+/g, ""));
+      const comparePrice = parseFloat(comparePriceEl.innerText.replace(/[^0-9.]+/g, ""));
 
-      // Ako je cijena 0 ili prazna → Kontakta för offert
-      if (!price || price === 0) {
-         priceEl.innerText = "Kontakta för offert";
-         priceEl.classList.add("no-price");
-         if (discountEl) discountEl.style.display = "none";
-         if (comparePriceEl) comparePriceEl.style.display = "none";
-         return;
-      }
-
-      // Nema compare price → sakrij i is-price i is-discount
-      if (
-         !comparePriceEl ||
-         comparePriceEl.classList.contains("w-dyn-bind-empty") ||
-         comparePriceEl.innerText.trim() === ""
-      ) {
-         priceEl.style.display = "none"; // sakrij precrtanu
-         comparePriceEl.style.display = "none"; // samo ako postoji
-         if (discountEl) discountEl.style.display = "none";
-         return;
-      }
-
-      const comparePrice = parseFloat(
-         comparePriceEl.innerText.replace(/[^0-9.]+/g, "")
-      );
-
-      // Ima compare price → prikaži sve
-      if (
-         !isNaN(price) &&
-         !isNaN(comparePrice) &&
-         price > 0 &&
-         price > comparePrice
-      ) {
-         priceEl.style.display = "";        // prikaži precrtanu
-         comparePriceEl.style.display = ""; // prikaži akcijsku
-         
-         const discountPercentage = Math.round(
-            ((price - comparePrice) / price) * 100
-         );
-         if (discountEl) {
-            discountEl.style.display = discountPercentage > 0 ? "" : "none";
-            discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% off" : "";
-         }
+      if (!isNaN(price) && !isNaN(comparePrice) && price > 0 && price > comparePrice) {
+         const discountPercentage = Math.round(((price - comparePrice) / price) * 100);
+         discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% off" : "";
       } else {
-         // compare postoji ali nije manji od price → sakrij oboje
-         priceEl.style.display = "none";
-         comparePriceEl.style.display = "none";
-         if (discountEl) discountEl.style.display = "none";
+         discountEl.innerText = "";
       }
    });
 });
