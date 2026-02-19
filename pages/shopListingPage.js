@@ -66,15 +66,15 @@ document.addEventListener("DOMContentLoaded", function () {
          comparePriceEl.innerText.replace(/[^0-9.]+/g, "")
       );
 
-      // Discount = koliko je is-price jeftinija od is-compare
+      // Discount = koliko je is-compare manji od is-price
       if (
          !isNaN(price) &&
          !isNaN(comparePrice) &&
-         comparePrice > 0 &&
-         comparePrice > price
+         price > 0 &&
+         price > comparePrice
       ) {
          const discountPercentage = Math.round(
-            ((comparePrice - price) / comparePrice) * 100
+            ((price - comparePrice) / price) * 100
          );
          if (discountEl) {
             discountEl.innerText =
