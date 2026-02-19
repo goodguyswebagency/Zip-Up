@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
    items.forEach((item) => {
       const priceEl = item.querySelector(
-         ".shop-listing_item_price.is-price:not(.no-price)"
+         ".shop-listing_item_price.is-price.is-discounted"
       );
       const comparePriceEl = item.querySelector(
-         ".shop-listing_item_price.is-compare"
+         ".shop-listing_item_price.has-discount"
       );
       const discountEl = item.querySelector(
          ".shop-listing_item_price.is-discount"
@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!priceEl || !comparePriceEl || !discountEl) return;
 
-      const price = parseFloat(priceEl.innerText.replace(/[^0-9.]+/g, ""));
-      const comparePrice = parseFloat(comparePriceEl.innerText.replace(/[^0-9.]+/g, ""));
+      const price = parseFloat(comparePriceEl.innerText.replace(/[^0-9.]+/g, ""));
+      const discountedPrice = parseFloat(priceEl.innerText.replace(/[^0-9.]+/g, ""));
 
-      if (!isNaN(price) && !isNaN(comparePrice) && price > 0 && price > comparePrice) {
-         const discountPercentage = Math.round(((price - comparePrice) / price) * 100);
+      if (!isNaN(price) && !isNaN(discountedPrice) && price > 0 && price > discountedPrice) {
+         const discountPercentage = Math.round(((price - discountedPrice) / price) * 100);
          discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% off" : "";
       } else {
          discountEl.innerText = "";
