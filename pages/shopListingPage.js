@@ -47,7 +47,7 @@ function calculateDiscounts() {
 
       if (!isNaN(price) && !isNaN(discountedPrice) && price > 0 && price > discountedPrice) {
          const discountPercentage = Math.round(((price - discountedPrice) / price) * 100);
-         discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% off" : "";
+         discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% kampanj" : "";
       } else {
          discountEl.innerText = "";
       }
