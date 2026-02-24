@@ -3,7 +3,7 @@
 /****************************************/
 gsap.registerPlugin(ScrollTrigger);
 
-export default function refreshListAnimations(lists) {
+function refreshListAnimations(lists) {
    let timeoutId;
    const ro = new ResizeObserver((entries) => {
       // Debounce multiple rapid size changes into one refresh
