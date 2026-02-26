@@ -33,3 +33,27 @@ body.is-fixed {
       margin-top: 1px;
    }
 }
+
+@media screen and (min-width: 992px) {
+  .navigation_overflow {
+    overflow: hidden !important;
+    transition: height 300ms ease !important;
+    height: 0px !important;
+  }
+
+  [id^="dropdown-"] {
+    position: absolute !important;
+    visibility: hidden !important;
+  }
+
+  [id^="dropdown-"].is-open {
+    position: relative !important;
+    visibility: visible !important;
+  }
+
+  .navigation_dropdown.is-open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    grid-template-rows: 1fr !important;
+  }
+}
