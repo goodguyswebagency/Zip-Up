@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth > 991) {
     const navigationDropdown = document.querySelector(".navigation_dropdown");
     const navigationLinks = document.querySelectorAll(".navigation_link");
-    const dropdowns = document.querySelectorAll("[id^='dropdown-']");
+    const dropdowns = document.querySelectorAll(".navigation_dropdown_grid, .navigation_dropdown_grid-2, .navigation_dropdown_grid-3");
     const navigation = document.querySelector(".navigation");
     const overflow = navigationDropdown.querySelector(".navigation_overflow");
 
