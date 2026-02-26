@@ -2,53 +2,42 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.innerWidth > 991) {
     const navigationDropdown = document.querySelector(".navigation_dropdown");
     const navigationLinks = document.querySelectorAll(".navigation_link");
-    const dropdowns = document.querySelectorAll(".navigation_dropdown_grid, .navigation_dropdown_grid-2, .navigation_dropdown_grid-3");
+    const dropdowns = document.querySelectorAll("[id^='dropdown-']");
     const navigation = document.querySelector(".navigation");
-    const overflow = navigationDropdown.querySelector(".navigation_overflow");
+
+    function updateDropdownHeight(targetDropdown) {
+      const height = targetDropdown.offsetHeight + 96; // 6rem + 2rem = 8rem = 128px... ali ti si rekao 6+2=8rem
+      navigationDropdown.style.maxHeight = height + "px";
+    }
 
     navigationLinks.forEach((link) => {
       link.addEventListener("mouseenter", () => {
+        dropdowns.forEach((drop) => drop.classList.remove("is-open"));
+
+        if (navigationDropdown) {
+          navigationDropdown.classList.add("is-open");
+        }
+
         const parts = link.id.split("-");
         const num = parts[parts.length - 1];
         const targetDropdown = document.getElementById(`dropdown-${num}`);
 
-        // Sakrij sve gridove odmah (bez tranzicije)
-        dropdowns.forEach((drop) => {
-          drop.style.position = "absolute";
-          drop.style.visibility = "hidden";
-          drop.classList.remove("is-open");
-        });
-
         if (targetDropdown) {
-          // Privremeno prikaži target da izmjerimo visinu
-          targetDropdown.style.position = "relative";
-          targetDropdown.style.visibility = "hidden";
-          targetDropdown.style.display = "grid";
-          const targetHeight = targetDropdown.offsetHeight;
-
-          // Postavi visinu na overflow wrapper
-          overflow.style.height = targetHeight + "px";
-
-          // Sada ga normalno prikaži
-          targetDropdown.style.position = "relative";
-          targetDropdown.style.visibility = "visible";
           targetDropdown.classList.add("is-open");
+          updateDropdownHeight(targetDropdown);
         }
 
-        navigationDropdown.classList.add("is-open");
-        navigation.classList.add("is-open");
+        if (navigation) {
+          navigation.classList.add("is-open");
+        }
       });
     });
 
     if (navigation) {
       navigation.addEventListener("mouseleave", () => {
-        dropdowns.forEach((drop) => {
-          drop.style.position = "absolute";
-          drop.style.visibility = "hidden";
-          drop.classList.remove("is-open");
-        });
-        overflow.style.height = "0px";
+        dropdowns.forEach((drop) => drop.classList.remove("is-open"));
         navigationDropdown.classList.remove("is-open");
+        navigationDropdown.style.maxHeight = "";
         navigation.classList.remove("is-open");
       });
     }
