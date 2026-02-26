@@ -35,14 +35,15 @@ body.is-fixed {
 }
 
 @media screen and (min-width: 992px) {
-  .navigation_dropdown {
-    transition: max-height 300ms ease, opacity 700ms ease !important;
-    max-height: 0 !important;
-    overflow: hidden !important;
-  }
+   .navigation_dropdown {
+      transition: max-height 300ms ease, opacity 700ms ease !important;
+      max-height: 0 !important;
+      overflow: hidden !important;
+   }
 
-  .navigation_dropdown.is-open {
-    opacity: 1 !important;
-    pointer-events: auto !important;
-  }
+   .navigation_dropdown.is-open {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      max-height: var(--nav-dropdown-height, 600px) !important;
+   }
 }
