@@ -35,29 +35,14 @@ body.is-fixed {
 }
 
 @media screen and (min-width: 992px) {
-  .navigation_overflow {
+  .navigation_dropdown {
+    transition: max-height 300ms ease, opacity 300ms ease !important;
+    max-height: 0 !important;
     overflow: hidden !important;
-    transition: height 300ms ease !important;
-    height: 0px !important;
-  }
-
-  .navigation_dropdown_grid,
-  .navigation_dropdown_grid-2,
-  .navigation_dropdown_grid-3 {
-    position: absolute !important;
-    visibility: hidden !important;
-  }
-
-  .navigation_dropdown_grid.is-open,
-  .navigation_dropdown_grid-2.is-open,
-  .navigation_dropdown_grid-3.is-open {
-    position: relative !important;
-    visibility: visible !important;
   }
 
   .navigation_dropdown.is-open {
     opacity: 1 !important;
     pointer-events: auto !important;
-    grid-template-rows: 1fr !important;
   }
 }
