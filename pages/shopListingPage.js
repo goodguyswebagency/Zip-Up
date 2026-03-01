@@ -109,20 +109,16 @@ window.fsAttributes.push([
 /* Filter sidebar actions    */
 /*****************************/
 
-// View — zatvori sidebar i postavi tekst
+// View — zatvori sidebar
 document.addEventListener('click', (e) => {
-   const viewBtn = e.target.closest('[data-filter="view"]');
-   if (viewBtn) {
+   if (e.target.closest('[data-filter="view"]')) {
       filterSidebar.classList.remove('is-open');
-      viewBtn.textContent = 'Visa';
    }
 });
 
-// Clear — koristi Finsweet API i postavi tekst
+// Clear — koristi Finsweet API
 document.addEventListener('click', (e) => {
-   const clearBtn = e.target.closest('[data-filter="clear"]');
-   if (clearBtn) {
-      clearBtn.textContent = 'Rensa alla';
+   if (e.target.closest('[data-filter="clear"]')) {
       window.fsAttributes = window.fsAttributes || [];
       window.fsAttributes.push([
          'cmsfilter',
@@ -132,6 +128,28 @@ document.addEventListener('click', (e) => {
       ]);
    }
 });
+
+/*****************************/
+/* Filter button text (SV)   */
+/*****************************/
+
+const setFilterButtonTexts = () => {
+   const viewBtn = document.querySelector('[data-filter="view"]');
+   const clearBtn = document.querySelector('[data-filter="clear"]');
+   if (viewBtn) viewBtn.textContent = 'Visa';
+   if (clearBtn) clearBtn.textContent = 'Rensa alla';
+};
+
+setFilterButtonTexts();
+
+const btnWrapper = document.querySelector('.shop-listing-button_wrapper');
+if (btnWrapper) {
+   new MutationObserver(setFilterButtonTexts).observe(btnWrapper, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+   });
+}
 
 // Applied filters heading
 const appliedHeading = document.querySelector(
