@@ -6,56 +6,17 @@ gsap.registerPlugin(ScrollTrigger);
 function refreshListAnimations(lists) {
    let timeoutId;
    const ro = new ResizeObserver((entries) => {
-      // Debounce multiple rapid size changes into one refresh
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
          ScrollTrigger.refresh();
       }, 100);
    });
 
-   // Start observing each list
    lists.forEach((el) => ro.observe(el));
 }
 
 const lists = document.querySelectorAll(".shop-listing_list");
 refreshListAnimations(lists);
-
-/****************************/
-/* Calculate every discount */
-/****************************/
-
-function calculateDiscounts() {
-   const items = document.querySelectorAll(
-      ".shop-listing_list .shop-listing_item"
-   );
-
-   items.forEach((item) => {
-      const priceEl = item.querySelector(
-         ".shop-listing_item_price.is-price.is-discounted"
-      );
-      const comparePriceEl = item.querySelector(
-         ".shop-listing_item_price.has-discount"
-      );
-      const discountEl = item.querySelector(
-         ".shop-listing_item_price.is-discount"
-      );
-
-      if (!priceEl || !comparePriceEl || !discountEl) return;
-
-      const price = parseFloat(comparePriceEl.innerText.replace(/[^0-9.]+/g, ""));
-      const discountedPrice = parseFloat(priceEl.innerText.replace(/[^0-9.]+/g, ""));
-
-      if (!isNaN(price) && !isNaN(discountedPrice) && price > 0 && price > discountedPrice) {
-         const discountPercentage = Math.round(((price - discountedPrice) / price) * 100);
-         discountEl.innerText = discountPercentage > 0 ? discountPercentage + "% kampanj" : "";
-      } else {
-         discountEl.innerText = "";
-      }
-   });
-}
-
-// Pokreni na učitavanju
-calculateDiscounts();
 
 /***********************/
 /* Filter sidebar open */
@@ -63,9 +24,7 @@ calculateDiscounts();
 
 const filterSidebar = document.querySelector(".shop-listing_sidebar");
 const filterSidebarOpen = document.querySelector(".shop-listing_filter-open");
-const filterSidebarClose = document.querySelector(
-   ".shop-listing_sidebar_close"
-);
+const filterSidebarClose = document.querySelector(".shop-listing_sidebar_close");
 
 filterSidebarOpen.addEventListener("click", () => {
    if (!filterSidebar.classList.contains("is-open")) {
@@ -79,14 +38,10 @@ filterSidebarClose.addEventListener("click", () => {
    }
 });
 
-const filterWrappers = document.querySelectorAll(
-   ".shop-listing_sidebar_filter_wrapper"
-);
+const filterWrappers = document.querySelectorAll(".shop-listing_sidebar_filter_wrapper");
 
 filterWrappers.forEach((filter) => {
-   const filterToggle = filter.querySelector(
-      ".shop-listing_sidebar_filter_toggle"
-   );
+   const filterToggle = filter.querySelector(".shop-listing_sidebar_filter_toggle");
    filterToggle.addEventListener("click", () => {
       filter.classList.toggle("is-open");
    });
@@ -110,18 +65,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
    };
 
-   // Provjeri odmah
    updatePagination();
 
-   // Posmatraj promjene u wrapperu
    const observer = new MutationObserver(updatePagination);
    observer.observe(wrapper, { childList: true });
 });
 
-
 /************************/
 /* Sidebar scroll lock  */
 /************************/
+
 filterSidebar.addEventListener('wheel', (e) => {
    e.preventDefault();
    e.stopPropagation();
@@ -147,9 +100,6 @@ window.fsAttributes.push([
 
             ScrollTrigger.refresh();
             anchor.scrollIntoView({ behavior: 'instant', block: 'start' });
-
-            // Preračunaj discount za nove iteme
-            calculateDiscounts();
          });
       });
    },
@@ -159,16 +109,20 @@ window.fsAttributes.push([
 /* Filter sidebar actions    */
 /*****************************/
 
-// View — zatvori sidebar
+// View — zatvori sidebar i postavi tekst
 document.addEventListener('click', (e) => {
-   if (e.target.closest('[data-filter="view"]')) {
+   const viewBtn = e.target.closest('[data-filter="view"]');
+   if (viewBtn) {
       filterSidebar.classList.remove('is-open');
+      viewBtn.textContent = 'Visa';
    }
 });
 
-// Clear — koristi Finsweet API
+// Clear — koristi Finsweet API i postavi tekst
 document.addEventListener('click', (e) => {
-   if (e.target.closest('[data-filter="clear"]')) {
+   const clearBtn = e.target.closest('[data-filter="clear"]');
+   if (clearBtn) {
+      clearBtn.textContent = 'Rensa alla';
       window.fsAttributes = window.fsAttributes || [];
       window.fsAttributes.push([
          'cmsfilter',
@@ -190,7 +144,7 @@ const activeWrapper = document.querySelector(
 if (appliedHeading && activeWrapper) {
    const updateAppliedHeading = () => {
       const hasActive = activeWrapper.children.length > 0;
-      appliedHeading.textContent = hasActive ? 'Applied filters' : 'No filter selected';
+      appliedHeading.textContent = hasActive ? 'Valda filter' : 'Inget filter valt';
       activeWrapper.style.paddingBottom = hasActive ? '1rem' : '';
    };
 
@@ -200,5 +154,3 @@ if (appliedHeading && activeWrapper) {
       childList: true,
    });
 }
-
-
