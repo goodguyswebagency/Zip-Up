@@ -1,15 +1,16 @@
-/******************************************/
-/* GSAP image parallax & width animations */
-/******************************************/
+document.addEventListener("DOMContentLoaded", () => {
+   /******************************************/
+   /* GSAP image parallax & width animations */
+   /******************************************/
 
    document.querySelectorAll("[gsap-image-parallax]").forEach((el) => {
      gsap.fromTo(
        el,
        {
-         yPercent: 12, // 
+         yPercent: 12,
        },
        {
-         yPercent: 0, // 
+         yPercent: 0,
          ease: "none",
          scrollTrigger: {
            trigger: el,
@@ -58,18 +59,15 @@
       return finalClipPath;
    }
 
-   // Width animation on each element with gsap-image-width
    document.querySelectorAll("[gsap-image-width]").forEach((el) => {
       let startPath = getInitClipPath(el);
       let endPath = getFinalClipPath(el);
 
-      // Set to 70% width
       gsap.set(el, {
          clipPath: startPath,
          webkitClipPath: startPath,
       });
 
-      // Animate clip path to full width
       gsap.to(el, {
          clipPath: endPath,
          webkitClipPath: endPath,
