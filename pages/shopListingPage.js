@@ -162,7 +162,7 @@ const activeWrapper = document.querySelector(
 if (appliedHeading && activeWrapper) {
    const updateAppliedHeading = () => {
       const hasActive = activeWrapper.children.length > 0;
-      appliedHeading.textContent = hasActive ? 'Valda filter' : 'Inget filter valt';
+      appliedHeading.textContent = hasActive ? 'Valda filter' : '';
       activeWrapper.style.paddingBottom = hasActive ? '1rem' : '';
    };
 
