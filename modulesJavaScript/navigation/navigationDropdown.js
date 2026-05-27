@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const dropdowns = document.querySelectorAll("[id^='dropdown-']");
       const navigation = document.querySelector(".navigation");
 
-      // Pending close timer — used to debounce mouseleave across browsers
-      // Safari fires mouseleave early when layout shifts during max-height animation,
-      // so we delay the close to give it time to re-evaluate hit areas
+      // Pending close timer — debounces mouseleave to prevent Safari from
+      // closing the dropdown prematurely during layout reflows
       let closeTimer = null;
 
       function openDropdown(link) {
@@ -25,12 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
          const parts = link.id.split("-");
          const num = parts[parts.length - 1];
-         const targetDropdown = document.getElementById(`dropdown-${num}`);
+         const targetDropdown = document.getElementById("dropdown-" + num);
 
          if (targetDropdown) {
             targetDropdown.classList.add("is-open");
-            const height = targetDropdown.offsetHeight + 128;
-            navigationDropdown.style.maxHeight = height + "px";
+            // Read height after is-open is applied so Safari gets correct value
+            requestAnimationFrame(() => {
+               const height = targetDropdown.offsetHeight + 128;
+               navigationDropdown.style.maxHeight = height + "px";
+            });
          }
 
          if (navigation) {
@@ -51,9 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       function scheduleClose() {
-         // 100ms buffer gives Safari time to finish layout recalculation
-         // before we commit to closing the dropdown
-         closeTimer = setTimeout(closeDropdown, 100);
+         // 150ms buffer gives Safari time to finish hit-area recalculation
+         // after layout shifts caused by max-height animation
+         closeTimer = setTimeout(closeDropdown, 150);
       }
 
       navigationLinks.forEach((link) => {
@@ -62,9 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (navigation) {
          navigation.addEventListener("mouseleave", (e) => {
-            // Skip if mouse is moving to a child element within the navigation —
-            // Safari sometimes fires mouseleave when crossing internal boundaries
-            if (navigation.contains(e.relatedTarget)) return;
+            // relatedTarget check: skip if mouse moves to a child element —
+            // Safari fires spurious mouseleave events when crossing internal boundaries
+            if (e.relatedTarget && navigation.contains(e.relatedTarget)) return;
             scheduleClose();
          });
 
@@ -76,14 +78,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
          });
       }
-
-      // Fallback for Safari edge case where mouseleave never fires on fast mouse moves:
-      // check on every pointermove whether the cursor has left the navigation area
-      document.addEventListener("pointermove", (e) => {
-         if (!navigation || !navigation.classList.contains("is-open")) return;
-         if (!navigation.contains(e.target)) {
-            scheduleClose();
-         }
-      });
    }
 });
