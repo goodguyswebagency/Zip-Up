@@ -39,6 +39,11 @@ body.is-fixed {
       transition: max-height 300ms ease, opacity 700ms ease !important;
       max-height: 0 !important;
       overflow: hidden !important;
+      /* Force GPU compositing layer — prevents Safari from triggering
+         spurious mouseleave events caused by layout reflow during
+         max-height animation */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
    }
 
    .navigation_dropdown.is-open {
