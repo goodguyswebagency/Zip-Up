@@ -11,6 +11,7 @@ if (window.innerWidth > 767) {
       smoothTouch: false,
       passive: false,
    });
+   window.lenis = lenis; 
    function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
