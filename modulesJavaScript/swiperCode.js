@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
    }
 
 
-   const historySliders = document.querySelectorAll(".history_slider");
+const historySliders = document.querySelectorAll(".history_slider");
 if (historySliders.length > 0) {
    historySliders.forEach(function (slider) {
       const mainSwiperEl = slider.querySelector(".swiper.is-history");
@@ -151,13 +151,19 @@ if (historySliders.length > 0) {
       if (!mainSwiperEl) return;
 
       const historySwiper = new Swiper(mainSwiperEl, {
-         slidesPerView: "auto",
-         spaceBetween: 32,
+         slidesPerView: 1.15,
+         spaceBetween: 16,
          loop: false,
          grabCursor: true,
          navigation: {
             nextEl: slider.querySelector(".swiper-button-next"),
             prevEl: slider.querySelector(".swiper-button-prev"),
+         },
+         breakpoints: {
+            992: {
+               slidesPerView: 1.35,
+               spaceBetween: 32,
+            },
          },
       });
 
