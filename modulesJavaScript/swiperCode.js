@@ -144,55 +144,32 @@ document.addEventListener("DOMContentLoaded", function () {
    const historySliders = document.querySelectorAll(".history_slider");
    if (historySliders.length > 0) {
       historySliders.forEach(function (slider) {
-         const thumbsSwiperEl = slider.querySelector(
-            ".swiper.is-history-thumbs"
-         );
          const mainSwiperEl = slider.querySelector(".swiper.is-history");
          const progressLine = slider.querySelector(
             ".swiper-progress .swiper-progress-line"
          );
-         if (thumbsSwiperEl && mainSwiperEl) {
-            const thumbsSwiper = new Swiper(thumbsSwiperEl, {
-               slidesPerView: 4,
-               spaceBetween: 120,
-               watchSlidesProgress: true,
-               breakpoints: {
-                  0: {
-                     slidesPerView: 2,
-                     spaceBetween: 80,
-                  },
-                  992: {
-                     slidesPerView: 4,
-                     spaceBetween: 120,
-                  },
+         if (!mainSwiperEl) return;
+   
+         const historySwiper = new Swiper(mainSwiperEl, {
+            slidesPerView: 1.2,
+            spaceBetween: 20,
+            loop: false,
+            grabCursor: true,
+            navigation: {
+               nextEl: slider.querySelector(".swiper-button-next"),
+               prevEl: slider.querySelector(".swiper-button-prev"),
+            },
+            breakpoints: {
+               992: {
+                  slidesPerView: 1.75,
+                  spaceBetween: 20,
                },
-            });
-            const mainSwiper = new Swiper(mainSwiperEl, {
-               slidesPerView: 1,
-               spaceBetween: 0,
-               loop: false,
-               effect: "fade",
-               fadeEffect: { crossFade: true },
-               thumbs: { swiper: thumbsSwiper },
-               navigation: {
-                  nextEl: slider.querySelector(".swiper-button-next"),
-                  prevEl: slider.querySelector(".swiper-button-prev"),
-               },
-               breakpoints: {
-                  0: {
-                     effect: "fade",
-                  },
-                  992: {
-                     effect: "fade",
-                     fadeEffect: { crossFade: true },
-                     spaceBetween: 0,
-                  },
-               },
-            });
-            mainSwiper.on("progress", function (swiper, progress) {
-               progressLine.style.width = progress * 100 + "%";
-            });
-         }
+            },
+         });
+   
+         historySwiper.on("progress", function (_swiper, progress) {
+            if (progressLine) progressLine.style.width = progress * 100 + "%";
+         });
       });
    }
    const infoSliders = document.querySelectorAll(".info-slider_slider");
