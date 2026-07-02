@@ -142,36 +142,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
    const historySliders = document.querySelectorAll(".history_slider");
-   if (historySliders.length > 0) {
-      historySliders.forEach(function (slider) {
-         const mainSwiperEl = slider.querySelector(".swiper.is-history");
-         const progressLine = slider.querySelector(
-            ".swiper-progress .swiper-progress-line"
-         );
-         if (!mainSwiperEl) return;
-   
-         const historySwiper = new Swiper(mainSwiperEl, {
-            slidesPerView: 1.2,
-            spaceBetween: 20,
-            loop: false,
-            grabCursor: true,
-            navigation: {
-               nextEl: slider.querySelector(".swiper-button-next"),
-               prevEl: slider.querySelector(".swiper-button-prev"),
-            },
-            breakpoints: {
-               992: {
-                  slidesPerView: 1.75,
-                  spaceBetween: 20,
-               },
-            },
-         });
-   
-         historySwiper.on("progress", function (_swiper, progress) {
-            if (progressLine) progressLine.style.width = progress * 100 + "%";
-         });
+if (historySliders.length > 0) {
+   historySliders.forEach(function (slider) {
+      const mainSwiperEl = slider.querySelector(".swiper.is-history");
+      const progressLine = slider.querySelector(
+         ".swiper-progress .swiper-progress-line"
+      );
+      if (!mainSwiperEl) return;
+
+      const historySwiper = new Swiper(mainSwiperEl, {
+         slidesPerView: "auto",
+         spaceBetween: 32,
+         loop: false,
+         grabCursor: true,
+         navigation: {
+            nextEl: slider.querySelector(".swiper-button-next"),
+            prevEl: slider.querySelector(".swiper-button-prev"),
+         },
       });
-   }
+
+      historySwiper.on("progress", function (_swiper, progress) {
+         if (progressLine) {
+            const p = Math.max(0, Math.min(1, progress));
+            progressLine.style.width = p * 100 + "%";
+         }
+      });
+   });
+}
+   
    const infoSliders = document.querySelectorAll(".info-slider_slider");
    if (infoSliders.length > 0) {
       infoSliders.forEach(function (slider) {
