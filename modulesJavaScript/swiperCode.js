@@ -151,7 +151,7 @@ if (historySliders.length > 0) {
       if (!mainSwiperEl) return;
 
       const historySwiper = new Swiper(mainSwiperEl, {
-         slidesPerView: 1.15,
+         slidesPerView: 1,
          spaceBetween: 16,
          loop: false,
          grabCursor: true,
@@ -161,8 +161,8 @@ if (historySliders.length > 0) {
          },
          breakpoints: {
             992: {
-               slidesPerView: 1.35,
-               spaceBetween: 32,
+               slidesPerView: "auto",
+               spaceBetween: 360,
             },
          },
       });
