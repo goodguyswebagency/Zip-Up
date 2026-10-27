@@ -87,12 +87,18 @@ import "./modulesJavaScript/swiperCode.js";
 document.addEventListener("DOMContentLoaded", () => {
    gsap.registerPlugin(ScrollTrigger);
 
+   // Navigation/filter blocks must stay put, otherwise clicks miss while they move (QA TILL-01)
+   const noFade = ".shop-listing_filters_layout, .shop-listing_filters";
+
    gsap.utils.toArray("[data-animation-fade]").forEach((elem) => {
+      if (elem.matches(noFade)) return;
+
       gsap.from(elem, {
          opacity: 0,
          y: 50,
          duration: 0.5,
          ease: "power1.out",
+         clearProps: "transform,opacity",
          scrollTrigger: {
             trigger: elem,
             start: "top 93%",
