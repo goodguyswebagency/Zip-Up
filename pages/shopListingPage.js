@@ -89,12 +89,25 @@ filterSidebar.addEventListener('wheel', (e) => {
 /* Pagination scroll to top  */
 /*****************************/
 
+// Scroll only after the user changes page. cmsload also fires renderitems on
+// the first render, and that jump made clicks right after load miss (QA TILL-01).
+let scrollAfterPaging = false;
+
+document.addEventListener('click', (e) => {
+   if (e.target.closest('.shop-listing_pagination a, .shop-listing_pagination [fs-cmsload-element]')) {
+      scrollAfterPaging = true;
+   }
+});
+
 window.fsAttributes = window.fsAttributes || [];
 window.fsAttributes.push([
    'cmsload',
    (listInstances) => {
       listInstances.forEach((list) => {
          list.on('renderitems', () => {
+            if (!scrollAfterPaging) return;
+            scrollAfterPaging = false;
+
             const anchor = document.querySelector('[data-scroll-anchor]');
             if (!anchor) return;
 
